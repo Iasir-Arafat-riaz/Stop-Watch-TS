@@ -64,25 +64,44 @@ const StWatch = () => {
 
 	console.log({ renderTest })
 
-	const formatTime = (time: number) => {
+	const formatTime = (time: number, isRunningTime = false) => {
 		const milliseconds = `0${(time % 1000) / 100}`.slice(-2);
 		const seconds = `0${Math.floor((time / 1000) % 60)}`.slice(-2);
 		const minutes = `0${Math.floor((time / 60000) % 60)}`.slice(-2);
-		return `${
-			minutes.toString().padStart(2, "0")}:
-			${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(2, "0")}`;
+
+		return isRunningTime
+			? <>
+				<div className="displayTime">
+					{
+						` ${minutes.toString().padStart(2, '0')}`
+					}:
+				</div>
+				<div className="displayTime">
+					{
+						`${seconds.toString().padStart(2, '0')}`
+					}.
+				</div>
+				<div className="displayTime-miliSec">
+					{
+						`${milliseconds.toString().padStart(2, '0')}`
+					}
+				</div>
+			</>
+			: `${minutes.toString().padStart(2, "0")}:
+			${seconds.toString().padStart(2, "0")}.
+			${milliseconds.toString().padStart(2, "0")}`;
 	};
 
-	const miliSeconds = Math.floor((elapsedTime % 1000) / 10);
-	const seconds = Math.floor((elapsedTime / 1000) % 60);
-	const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+	// const miliSeconds = Math.floor((elapsedTime % 1000) / 10);
+	// const seconds = Math.floor((elapsedTime / 1000) % 60);
+	// const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
 
 	console.log({ elapsedTime, startTime, allLaps: laps, lapTime })
 	return (
 		<>
 			<div className="stopwatch-container">
 				<div className="stopwatch-time">
-					<div className="displayTime">
+					{/* <div className="displayTime">
 						{
 							` ${minutes.toString().padStart(2, '0')}`
 						}:
@@ -96,7 +115,8 @@ const StWatch = () => {
 						{
 							`${String(miliSeconds).padStart(2, '0')}`
 						}
-					</div>
+					</div> */}
+					<>{formatTime(elapsedTime, true)}</>
 				</div>
 				<div className="stopwatch-buttons">
 					{
