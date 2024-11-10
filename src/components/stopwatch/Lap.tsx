@@ -9,7 +9,7 @@ type TypePros = {
 const Lap = ({ item }: TypePros) => {
 
     const { lapTime, time, count } = item;
-    
+    // console.log({"Lap-LapTime":lapTime})
     const lapMiliSeconds = Math.floor((lapTime % 100));
     const lapSeconds = Math.floor((lapTime / 1000) % 60);
     const lapMinutes = Math.floor((lapTime / (1000 * 60)) % 60);
