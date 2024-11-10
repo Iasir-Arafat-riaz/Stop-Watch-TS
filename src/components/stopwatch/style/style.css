@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'digital-clock-font';
+    src: url('./clockicons.ttf');
+}
+
+.stopwatch-container {
+    color: gray;
+    width: 380px;
+    margin: auto;
+    margin-top: 50px;
+
+}
+
+.stopwatch-buttons {
+    margin-top: 20px;
+}
+
+.stopwatch-button {
+    margin-right: 5px !important;
+    width: 95px;
+    padding: 10px 0 !important;
+}
+
+
+.displayTime {
+    font-size: 75px;
+    display: inline-block;
+}
+
+.displayTime-miliSec {
+    display: inline-block;
+    font-size: 30px;
+}
+
+.stopwatch-container {
+    font-family: 'digital-clock-font';
+    margin-bottom: 50px;
+}
+
+.laps-container{
+    width: 600px;
+    margin: auto;
+}
+
+.laps-container{
+    font-family: 'digital-clock-font';
+    color: rgb(65, 64, 64);
+    font-size: 22px;
+}
