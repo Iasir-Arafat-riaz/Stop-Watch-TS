@@ -1,14 +1,17 @@
 import { Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import LapLine, { lapLineProps } from './LapLine';
+import {
+    useEffect,
+    useState
+} from 'react';
 import Lap from './Lap';
+import { lapLineProps } from './LapLine';
 
 const StWatch = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0);
     const [lapTime, setLapTime] = useState(0);
-    const [startTime, setStartTime] = useState(null);  // Track start time when stopwatch begins
-    const [laps, setLaps] = useState([]);
+    const [startTime, setStartTime] = useState(null);
+    const [laps, setLaps] = useState<lapLineProps[]>([]);
     const [count, setCount] = useState(0)
 
     useEffect(() => {
@@ -16,19 +19,17 @@ const StWatch = () => {
 
         if (isRunning) {
             interval = setInterval(() => {
-                // Calculate time difference between now and start time
                 setElapsedTime(new Date().getTime() - startTime);
-                // console.log(new Date().getTime() - startTime)
             }, 70);
         }
 
-        return () => clearInterval(interval); // Clear interval on component unmount or when stopped
+        return () => clearInterval(interval);
     }, [isRunning, startTime]);
 
 
     const startStopwatch = () => {
         if (!isRunning) {
-            setStartTime(new Date().getTime() - elapsedTime); // Adjust start time for pauses
+            setStartTime(new Date().getTime() - elapsedTime);
             setIsRunning(true);
         }
     };
@@ -51,31 +52,6 @@ const StWatch = () => {
         setLapTime(0);
     }
 
-    // const formatTime = (time) => {
-    //     const miliSeconds = Math.floor((time % 100));
-    //     const seconds = Math.floor((time / 1000) % 60);
-    //     const minutes = Math.floor((time / (1000 * 60)) % 60);
-    //     // const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
-
-    //     return <>
-    //         <div className="displayTime">
-    //             {
-    //                 ` ${minutes.toString().padStart(2, '0')}`
-    //             }:
-    //         </div>
-    //         <div className="displayTime">
-    //             {
-    //                 `${seconds.toString().padStart(2, '0')}`
-    //             }.
-    //         </div>
-    //         <div className="displayTime-miliSec">
-    //             {
-    //                 `${String(miliSeconds).padStart(2, '0')}`
-    //             }
-    //         </div>
-    //     </>;
-    // };
-
     const miliSeconds = Math.floor((elapsedTime % 1000) / 10);
     const seconds = Math.floor((elapsedTime / 1000) % 60);
     const minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
@@ -89,7 +65,7 @@ const StWatch = () => {
     }
 
 
-    console.log({ elapsedTime, startTime, allLaps: laps,lapTime })
+    console.log({ elapsedTime, startTime, allLaps: laps, lapTime })
     return (
         <>
             <div className="stopwatch-container">
@@ -172,10 +148,6 @@ const StWatch = () => {
                                         {lapSeconds?.toString().padStart(2, "0")}.
                                         {lapMiliSeconds?.toString().padStart(2, "0")}
                                     </th>
-                                    {/* <th>{lapMinutes.toString().padStart(2, "0")}:
-                                        {lapSeconds.toString().padStart(2, "0")}.
-                                        {lapMiliSeconds.toString().padStart(2, "0")}
-                                    </th> */}
                                     <th>
                                         {minutes.toString().padStart(2, "0")}:
                                         {seconds.toString().padStart(2, "0")}.
@@ -186,7 +158,7 @@ const StWatch = () => {
                                     [...laps].reverse().map((item, i) => {
                                         console.log({ item: item })
                                         return <tr key={i} >
-                                            <Lap item={item}/>
+                                            <Lap item={item} />
                                         </tr>
                                     })
                                 }
