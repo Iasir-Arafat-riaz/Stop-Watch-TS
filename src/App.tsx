@@ -8,8 +8,6 @@ import "./components/stopwatch/style/style.css"
 
 function App() {
 
-  const time = new Date().getTime();
-
   return (
     <>
       {/* <PracticeComponent/> */}
