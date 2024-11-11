@@ -8,10 +8,9 @@ import { lapLineProps } from './LapLine';
 
 const StWatch = () => {
 	const [isRunning, setIsRunning] = useState(false);
-	const [elapsedTime, setElapsedTime] = useState(0);
+	const [elapsedTime, setElapsedTime] = useState<number>(0);
 	const [lapTime, setLapTime] = useState(0);
-	const [startTime, setStartTime] = useState(null);
-	const [starLaptTime, setStartLapTime] = useState(null);
+	const [startTime, setStartTime] = useState<number>(0);
 	const [laps, setLaps] = useState<lapLineProps[]>([]);
 	const [count, setCount] = useState(0)
 
@@ -32,7 +31,6 @@ const StWatch = () => {
 		if (!isRunning) {
 			console.log({ "StartButton": elapsedTime })
 			setStartTime(new Date().getTime() - elapsedTime);
-			setStartLapTime(new Date().getTime() - elapsedTime);
 			setIsRunning(true);
 		}
 	};
