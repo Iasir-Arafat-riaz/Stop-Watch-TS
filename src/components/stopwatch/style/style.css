@@ -4,11 +4,41 @@
 }
 
 .stopwatch-container {
+    font-family: 'digital-clock-font';
     color: gray;
-    width: 380px;
     margin: auto;
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 
+}
+
+.stop-watch-header {
+    font-family: 'Times New Roman', Times, serif !important;
+    text-align: center;
+    font-weight: 300 !important;
+    font-size: 40px !important;
+    color: #222;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+    margin-bottom: 50px !important;
+}
+
+.stop-watch-header:after,
+.stop-watch-header:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #c50000;
+    border-top: 1px solid #c50000;
+    height: 5px;
+    background-color: #f8f8f8;
 }
 
 .stopwatch-buttons {
@@ -32,17 +62,13 @@
     font-size: 30px;
 }
 
-.stopwatch-container {
-    font-family: 'digital-clock-font';
-    margin-bottom: 50px;
+.laps-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.laps-container{
-    width: 600px;
-    margin: auto;
-}
-
-.laps-container{
+.laps-container {
     font-family: 'digital-clock-font';
     color: rgb(65, 64, 64);
     font-size: 22px;

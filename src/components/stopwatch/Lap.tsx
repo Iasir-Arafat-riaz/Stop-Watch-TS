@@ -3,33 +3,21 @@ import { lapLineProps } from './LapLine';
 
 type TypePros = {
     item: lapLineProps;
+    formatTime: (time: number, isRunning?: boolean) => React.ReactNode | string;
     children?: JSX.Element[] | JSX.Element
 }
 
-const Lap = ({ item }: TypePros) => {
+const Lap = ({ item, formatTime }: TypePros) => {
 
     const { lapTime, time, count } = item;
-    // console.log({"Lap-LapTime":lapTime})
-    const lapMiliSeconds = Math.floor((lapTime % 100));
-    const lapSeconds = Math.floor((lapTime / 1000) % 60);
-    const lapMinutes = Math.floor((lapTime / (1000 * 60)) % 60);
-
-    const milliseconds = Math.floor((time % 100));
-    const seconds = Math.floor((time / 1000) % 60);
-    const minutes = Math.floor((time / (1000 * 60)) % 60);
-
     return (
         <>
             <th>{count + 1}</th>
             <th>
-                {lapMinutes.toString().padStart(2, "0")}:
-                {lapSeconds.toString().padStart(2, "0")}.
-                {lapMiliSeconds.toString().padStart(2, "0")}
+                {formatTime(lapTime)}
             </th>
             <th>
-                {minutes.toString().padStart(2, "0")}:
-                {seconds.toString().padStart(2, "0")}.
-                {milliseconds.toString().padStart(2, "0")}
+                {formatTime(time)}
             </th>
         </>
     );
