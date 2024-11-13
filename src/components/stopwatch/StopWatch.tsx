@@ -1,13 +1,13 @@
 import { Button } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import "./style/style.css"
-import LapLine, { lapLineProps } from "./LapLine";
+import LapLine, { TypeLapItem } from "./LapLine";
 
 const StopWatch = () => {
 	const [time, setTime] = useState(0);
 	const [lapTime, setLapTime] = useState(0);
 	const [isRunning, setIsRunning] = useState(false);
-	const [allLaps, setAllLaps] = useState<lapLineProps[]>([]);
+	const [allLaps, setAllLaps] = useState<TypeLapItem[]>([]);
 	const [count, setCount] = useState(0)
 
 	useEffect(() => {
@@ -26,12 +26,12 @@ const StopWatch = () => {
 		return () => clearInterval(lapsIntervalId)
 
 	}, [lapTime, isRunning]);
-	
+
 	const handleLaps = useCallback(() => {
 
 		if (isRunning) {
 			setCount(count+1)
-			setAllLaps([...allLaps, { lapTime: lapTime, time: time, count} as lapLineProps])
+			setAllLaps([...allLaps, { lapTime: lapTime, time: time, count} as TypeLapItem])
 			setLapTime(0);
 
 		}
