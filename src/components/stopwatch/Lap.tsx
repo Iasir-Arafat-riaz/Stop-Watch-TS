@@ -1,26 +1,24 @@
-import React from 'react';
-import { lapLineProps } from './LapLine';
+import { TypeLapItem } from './LapLine';
+import { FormattedTime } from './FormattedTime';
 
 type TypePros = {
-    item: lapLineProps;
-    formatTime: (time: number, isRunning?: boolean) => React.ReactNode | string;
-    children?: JSX.Element[] | JSX.Element
-}
+  item: TypeLapItem;
+};
 
-const Lap = ({ item, formatTime }: TypePros) => {
+const Lap = ({ item }: TypePros) => {
+  // const { lapTime, time, count } = item;
 
-    const { lapTime, time, count } = item;
-    return (
-        <>
-            <th>{count + 1}</th>
-            <th>
-                {formatTime(lapTime)}
-            </th>
-            <th>
-                {formatTime(time)}
-            </th>
-        </>
-    );
+  return (
+    <>
+      <th>{item.count + 1}</th>
+      <th>
+        <FormattedTime time={item.lapTime} />
+      </th>
+      <th>
+        <FormattedTime time={item.time} />
+      </th>
+    </>
+  );
 };
 
 export default Lap;

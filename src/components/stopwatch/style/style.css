@@ -54,11 +54,11 @@
 
 .displayTime {
     font-size: 75px;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .displayTime-miliSec {
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 30px;
 }
 
